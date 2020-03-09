@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		7149FB5C2415BEF400C3772F /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7149FB5B2415BEF400C3772F /* main.swift */; };
+		7149FB642415C2DB00C3772F /* Emotion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7149FB632415C2DB00C3772F /* Emotion.swift */; };
+		7149FB662415C74800C3772F /* Expression.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7149FB652415C74800C3772F /* Expression.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,6 +27,8 @@
 /* Begin PBXFileReference section */
 		7149FB582415BEF400C3772F /* SwiftNLP */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = SwiftNLP; sourceTree = BUILT_PRODUCTS_DIR; };
 		7149FB5B2415BEF400C3772F /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		7149FB632415C2DB00C3772F /* Emotion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Emotion.swift; sourceTree = "<group>"; };
+		7149FB652415C74800C3772F /* Expression.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Expression.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,8 +62,18 @@
 			isa = PBXGroup;
 			children = (
 				7149FB5B2415BEF400C3772F /* main.swift */,
+				7149FB622415C2C100C3772F /* Sources */,
 			);
 			path = SwiftNLP;
+			sourceTree = "<group>";
+		};
+		7149FB622415C2C100C3772F /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				7149FB632415C2DB00C3772F /* Emotion.swift */,
+				7149FB652415C74800C3772F /* Expression.swift */,
+			);
+			path = Sources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -121,6 +135,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				7149FB5C2415BEF400C3772F /* main.swift in Sources */,
+				7149FB642415C2DB00C3772F /* Emotion.swift in Sources */,
+				7149FB662415C74800C3772F /* Expression.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
