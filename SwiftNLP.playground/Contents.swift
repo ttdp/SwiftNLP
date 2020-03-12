@@ -1,23 +1,38 @@
 import NaturalLanguage
 
-let text = "Apple provides a community based knowledge portal for Analytics and Data Science professionals."
+// MARK: - Language Identification
 
-print(text)
+let recognizer = NLLanguageRecognizer()
+recognizer.processString("Stay hungry. Stay foolish.")
 
+let lang = recognizer.dominantLanguage?.rawValue  // Optional("en")
+
+// MARK: - Tokenization
+
+let text = "I want to play basketball 🏀."
 let tokenizer = NLTokenizer(unit: .word)
 tokenizer.string = text
 
-tokenizer.enumerateTokens(in: text.startIndex..<text.endIndex) { range, _ -> Bool in
-    print(text[range])
-    return true
-}
+let tokenRanges = tokenizer.tokens(for: text.startIndex..<text.endIndex)
+let tokens = tokenRanges.map { text[$0] }
+print(tokens)
+
+// MARK: - Word Tagging
+
+let tagger = NLTagger(tagSchemes: [NLTagScheme.lexicalClass])
+let options: NLTagger.Options = [.omitWhitespace, .omitPunctuation, .omitOther]
+tagger.string = text
+
+let tags = tagger.tags(in: text.startIndex..<text.endIndex, unit: .word, scheme: .lexicalClass, options: options)
+let taggedWords = tags.map { tag in (text[tag.1], tag.0!.rawValue) }
+print(taggedWords)
 
 let text2 = "swimming, swam, swim, assuming, assumed, assume, learned, learning."
 
-let tagger = NLTagger(tagSchemes: [.lemma])
-tagger.string = text2
+let tagger2 = NLTagger(tagSchemes: [.lemma])
+tagger2.string = text2
 
-tagger.enumerateTags(in: text2.startIndex..<text2.endIndex, unit: .word, scheme: .lemma) { tag, range -> Bool in
+tagger2.enumerateTags(in: text2.startIndex..<text2.endIndex, unit: .word, scheme: .lemma) { tag, range -> Bool in
     if let tag = tag {
         print("\(text2[range]): \(tag.rawValue)")
     }
@@ -41,11 +56,11 @@ let text4 = "Apple is lookings at buying U.K. startup for $1 billion in London."
 
 let nerTagger = NLTagger(tagSchemes: [.nameType])
 let nerOptions: NLTagger.Options = [.omitWhitespace, .omitPunctuation, .joinNames]
-let tags: [NLTag] = [.personalName, .placeName, .organizationName]
+let nameTags: [NLTag] = [.personalName, .placeName, .organizationName]
 nerTagger.string = text4
 
 nerTagger.enumerateTags(in: text4.startIndex..<text4.endIndex, unit: .word, scheme: .nameType, options: nerOptions) { tag, range -> Bool in
-    if let tag = tag, tags.contains(tag) {
+    if let tag = tag, nameTags.contains(tag) {
         print("\(text4[range]): \(tag.rawValue)")
     }
     return true
